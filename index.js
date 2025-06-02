@@ -1,29 +1,41 @@
 const newDeckBtn = document.getElementById("new-deck-btn");
 const drawBtn = document.getElementById("draw-btn");
+let cardArray = [];
+let deckId = "";
+let remainingCards = "";
 
-async function getNewDeck() {
-  const response = await fetch("https://www.deckofcardsapi.com/api/deck/new/");
-  return response.json();
+function handleNewDeckBtn() {
+  fetch("https://www.deckofcardsapi.com/api/deck/new/")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      deckId = data.deck_id;
+      remainingCards = data.remaining;
+      updateRemainingCards();
+    });
 }
 
-async function handleNewDeckBtn() {
-  const data = await getNewDeck();
-  console.log(data.deck_id);
-  return data.deck_id;
+function handleDrawBtn() {
+  fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      remainingCards = data.remaining;
+      cardArray = data.cards;
+      console.log(cardArray);
+      updateRemainingCards();
+    });
 }
 
-async function drawCard() {
-  const deckId = await handleNewDeckBtn();
-
-  const response = await fetch(
-    `https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`
-  );
-  return await response.json();
+function updateRemainingCards() {
+  document.getElementById(
+    "remaining-cards"
+  ).textContent = `Remaining Cards: ${remainingCards}`;
 }
 
-async function handleDrawBtn() {
-  const data = await drawCard();
-  console.log(data);
+function displayCards() {
+  const cardContainer = document.getElementById("card-container");
+  console.log(cardArray); // I need to call this function in handleDrawBtn
 }
 
 newDeckBtn.addEventListener("click", handleNewDeckBtn);
