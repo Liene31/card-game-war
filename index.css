@@ -1,0 +1,21 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65em;
+  background-image: url(images/table.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65em;
+}
+
+.card {
+  border: 1px solid black;
+  width: 100px;
+  height: 150px;
+}
