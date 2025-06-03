@@ -1,11 +1,9 @@
-const newDeckBtn = document.getElementById("new-deck-btn");
-const drawBtn = document.getElementById("draw-btn");
 let cardArray = [];
 let deckId = "";
 let remainingCards = "";
 
-function handleNewDeckBtn() {
-  fetch("https://www.deckofcardsapi.com/api/deck/new/")
+document.getElementById("new-deck-btn").addEventListener("click", () => {
+  fetch("https://www.deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -13,19 +11,19 @@ function handleNewDeckBtn() {
       remainingCards = data.remaining;
       updateRemainingCards();
     });
-}
+});
 
-function handleDrawBtn() {
+document.getElementById("draw-btn").addEventListener("click", () => {
   fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
       remainingCards = data.remaining;
       cardArray = data.cards;
-      console.log(cardArray);
       updateRemainingCards();
+      displayCards();
     });
-}
+});
 
 function updateRemainingCards() {
   document.getElementById(
@@ -34,9 +32,12 @@ function updateRemainingCards() {
 }
 
 function displayCards() {
-  const cardContainer = document.getElementById("card-container");
-  console.log(cardArray); // I need to call this function in handleDrawBtn
-}
+  let displayCardsHtml = "";
+  cardArray.forEach((card) => {
+    displayCardsHtml += `
+    <div class="card"><img src="${card.image}"></div>
+    `;
+  });
 
-newDeckBtn.addEventListener("click", handleNewDeckBtn);
-drawBtn.addEventListener("click", handleDrawBtn);
+  document.getElementById("card-container").innerHTML = displayCardsHtml;
+}
