@@ -92,7 +92,7 @@ function getScore(card1, card2) {
 function displayScore() {
   document.getElementById(
     "computer-score"
-  ).textContent = `Compure score: ${computerScore}`;
+  ).textContent = `Computer score: ${computerScore}`;
   document.getElementById(
     "your-score"
   ).textContent = `Your score: ${yourScore}`;
