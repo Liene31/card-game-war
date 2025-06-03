@@ -5,19 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- CSS -->
     <link rel="stylesheet" href="index.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
     <title>Card Game War</title>
   </head>
   <body>
-    <button id="new-deck-btn">New Deck</button>
-    <p id="remaining-cards"></p>
-    <h1 id="game-status">Game of War</h1>
-    <h2 id="computer-score"></h2>
-    <div class="card-container" id="card-container">
-      <div class="card"></div>
-      <div class="card"></div>
+    <div class="container">
+      <button class="new-deck-btn" id="new-deck-btn">New Deck</button>
+      <p class="remaining-cards" id="remaining-cards"></p>
+      <h1 id="game-status">Game of War</h1>
+      <h2 class="computer-score" id="computer-score"></h2>
+      <div class="card-container" id="card-container">
+        <div class="card translate-left">
+          <img src="images/back-one.jpg" alt="" />
+        </div>
+        <div class="card translate-right">
+          <img src="images/back-two.jpg" alt="" />
+        </div>
+      </div>
+      <h2 class="your-score" id="your-score"></h2>
+      <button class="draw-btn" id="draw-btn">Draw</button>
     </div>
-    <h2 id="your-score"></h2>
-    <button id="draw-btn">Draw</button>
     <script src="index.js"></script>
   </body>
 </html>

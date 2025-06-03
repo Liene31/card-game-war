@@ -59,13 +59,10 @@ function updateRemainingCards() {
 }
 
 function displayCards() {
-  let displayCardsHtml = "";
-  cardArray.forEach((card) => {
-    displayCardsHtml += `
-    <div class="card"><img src="${card.image}"></div>
+  document.getElementById("card-container").innerHTML = `
+    <div class="card translate-left"><img src="${cardArray[0].image}"></div>
+    <div class="card translate-right"><img src="${cardArray[1].image}"></div>
     `;
-  });
-  document.getElementById("card-container").innerHTML = displayCardsHtml;
 }
 
 function displayScore(card1, card2) {
