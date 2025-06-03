@@ -14,22 +14,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url(images/table.png);
+  background-image: url(images/test.png);
   background-repeat: no-repeat;
   background-size: cover;
   width: 90%;
   margin: 0 auto;
   border-radius: 10px;
   padding: 3em 0;
-}
-
-.card-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.65em;
-  width: 200px;
-  margin-top: 2.5em;
 }
 
 h1 {
@@ -52,6 +43,15 @@ h2 {
 
 .remaining-cards {
   font-size: 1.3rem;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.65em;
+  width: 200px;
+  margin-top: 2.5em;
 }
 
 .card {

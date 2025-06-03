@@ -14,6 +14,7 @@ const cards = [
   "ACE",
 ];
 const gameStatusEl = document.getElementById("game-status");
+const drawBtn = document.getElementById("draw-btn");
 let cardArray = [];
 let deckId = "";
 let remainingCards = "";
@@ -26,11 +27,14 @@ document.getElementById("new-deck-btn").addEventListener("click", () => {
     .then((data) => {
       deckId = data.deck_id;
       remainingCards = data.remaining;
+      if (remainingCards > 0) {
+        drawBtn.disabled = false;
+      }
       updateRemainingCards();
     });
 });
 
-document.getElementById("draw-btn").addEventListener("click", () => {
+drawBtn.addEventListener("click", () => {
   fetch(`https://www.deckofcardsapi.com/api/deck/${deckId}/draw/?count=2`)
     .then((res) => res.json())
     .then((data) => {
@@ -40,13 +44,13 @@ document.getElementById("draw-btn").addEventListener("click", () => {
       displayCards();
       displayScore(data.cards[0].value, data.cards[1].value);
       if (remainingCards === 0) {
-        document.getElementById("draw-btn").disabled = true;
+        drawBtn.disabled = true;
         if (computerScore > yourScore) {
           gameStatusEl.textContent = "Computer won 😞";
         } else if (yourScore > computerScore) {
           gameStatusEl.textContent = "You won 🥳";
         } else {
-          gameStatusEl.textContent = "it's a tie 🤝";
+          gameStatusEl.textContent = "It's a tie 🤝";
         }
       }
     });
