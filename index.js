@@ -15,7 +15,6 @@ const cards = [
 ];
 
 const drawBtn = document.getElementById("draw-btn");
-let gameStatusEl = document.getElementById("game-status");
 let cardArray = [];
 let deckId = "";
 let remainingCards = "";
@@ -51,11 +50,11 @@ drawBtn.addEventListener("click", async () => {
   if (remainingCards === 0) {
     drawBtn.disabled = true;
     if (computerScore > yourScore) {
-      gameStatusEl.textContent = "Computer won 💀";
+      setGameStatus("Computer won 💀");
     } else if (yourScore > computerScore) {
-      gameStatusEl.textContent = "You won 👑";
+      setGameStatus("You won 👑");
     } else {
-      gameStatusEl.textContent = "It's a tie 🤝";
+      setGameStatus("It's a tie 🤝");
     }
   }
 });
@@ -79,12 +78,12 @@ function getScore(card1, card2) {
 
   if (cardOneValue > cardTwoValue) {
     computerScore++;
-    gameStatusEl.textContent = "Computer won this turn";
+    setGameStatus("Computer won this turn");
   } else if (cardTwoValue > cardOneValue) {
     yourScore++;
-    gameStatusEl.textContent = "You won this turn";
+    setGameStatus("You won this turn");
   } else {
-    gameStatusEl.textContent = "It's a war!";
+    setGameStatus("It's a war!");
   }
 
   displayScore();
@@ -97,4 +96,8 @@ function displayScore() {
   document.getElementById(
     "your-score"
   ).textContent = `Your score: ${yourScore}`;
+}
+
+function setGameStatus(message) {
+  document.getElementById("game-status").textContent = message;
 }
